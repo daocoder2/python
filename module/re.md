@@ -1,4 +1,4 @@
-# python模块之time
+# python模块之re
 
 [re：官方文档是最好的模块表达说明。](https://docs.python.org/3.6/library/re.html)
 
