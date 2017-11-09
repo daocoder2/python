@@ -12,11 +12,19 @@ random.md
 
 time.md
 
-## 4、threading：线程
+## 4、re ：正则表达式
 
-### 4.1 Condition：环境变量
+re.md
 
-Condition 利用生产者和消费者进行环境变量的说明。 
+## 5、urllib ：网络请求
+
+urllib.md
+
+## 6、threading：线程
+
+### 6.1 Condition：条件变量
+
+Condition 利用生产者和消费者进行条件变量的说明。 
 
 Condition.md
 
