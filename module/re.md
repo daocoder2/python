@@ -354,7 +354,7 @@ re提供了众多方法用于完成正则表达式的功能。这些方法可以
 
 ### 2.3.7 sub
 
-re.sub(pattern, repl, string[, count]) | pattern.sub(repl, string[, count])：使用repl替换string中每一个匹配的子串后，返回替换后的字符串。
+**re.sub(pattern, repl, string[, count]) | pattern.sub(repl, string[, count])**：使用repl替换string中每一个匹配的子串后，返回替换后的字符串。
 
 - 当repl是一个字符串时，可以使用\id、\g<id>或\g<name>引用分组，但不能使用编号0.
 - 当repl是一个方法时，这个方法应当只接收一个参数（Match对象），并返回一个用于替换的字符串。
@@ -378,7 +378,7 @@ re.sub(pattern, repl, string[, count]) | pattern.sub(repl, string[, count])：�
 
 ### 2.3.8 subn
 
-re.subn(pattern, repl, string[, count]) | pattern.subn(repl, string[, count])：返回结果为(re.sub(pattern, repl, string[, count]), 替换次数)，即元组展示的上方法结果和替换次数。
+**re.subn(pattern, repl, string[, count]) | pattern.subn(repl, string[, count])**：返回结果为(re.sub(pattern, repl, string[, count]), 替换次数)，即元组展示的上方法结果和替换次数。
 
 测试代码：
 
