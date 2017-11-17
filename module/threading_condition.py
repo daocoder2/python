@@ -17,7 +17,7 @@ Condition被称为条件变量，除了提供与Lock类似的acquire和release�
 
 执行效果：
 Market is Empty...
-Producer : 2
+Producer: 2
 Producer have producted something
 '''
 
@@ -29,53 +29,57 @@ MAX_SIZE = 5
 SHARE_Q = []  # 模拟共享队列
 condition = threading.Condition()
 
-class Producer(threading.Thread) :
+
+class Producer(threading.Thread):
     def __init__(self):
         super(Producer, self).__init__()
 
-    def run(self) :
+    def run(self):
         products = range(MAX_SIZE)
         global SHARE_Q
-        while True :
+        while True:
             condition.acquire()
-            if len(SHARE_Q) == MAX_SIZE :
+            if len(SHARE_Q) == MAX_SIZE:
                 print("Market is full..")
                 # 先是市场产品饱满、然后等待消费者在市场消费产品、等通知后这里回归继续执行、再重新判断条件
                 condition.wait()
                 print("Consumer have comsumed something")
-            else :
+            else:
                 product = random.choice(products)
                 SHARE_Q.append(product)
-                print("Producer : ", product)
+                print("Producer: ", product)
                 condition.notify()
             condition.release()
             time.sleep(random.random())
 
-class Consumer(threading.Thread) :
+
+class Consumer(threading.Thread):
     def __init__(self):
         super(Consumer, self).__init__()
 
-    def run(self) :
+    def run(self):
         global SHARE_Q
         while True:
             condition.acquire()
-            if not SHARE_Q :
+            if not SHARE_Q:
                 print("Market is Empty...")
                 # 先是市场产品为空、然后等待生产者向市场投入产品、等通知后这里回归继续执行、再重新判断条件
                 condition.wait()
                 print("Producer have producted something")
-            else :
+            else:
                 product = SHARE_Q.pop(0)
-                print("Consumer :", product)
+                print("Consumer:", product)
                 condition.notify()
             condition.release()
             time.sleep(random.random())
 
-def main() :
+
+def main():
     producer = Producer()
     consumer = Consumer()
     producer.start()
     consumer.start()
+
 
 if __name__ == '__main__':
     main()

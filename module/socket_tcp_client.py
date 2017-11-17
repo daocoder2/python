@@ -7,15 +7,15 @@ import socket
 
 BUFF_SIZE = 1024  # 设置缓冲区的大小
 server_addr = ('127.0.0.1', 2333) # IP和端口构成表示地址
-try :
+try:
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # 返回新的socket对象
-except socket.error as e :
+except socket.error as e:
     print('Creating Socket Failure. Error Code : %d .Message : %s.' %(e.errno, e.strerror))
     sys.exit()
 client.connect(server_addr)  # 要连接的服务器地址
 while True:
     data = input("Please input some string > ")
-    if not data :
+    if not data:
         print('input can\'t empty, Please input again..')
         continue
     client.sendall(bytes(data, 'utf8'))  # 发送数据到服务器

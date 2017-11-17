@@ -15,7 +15,7 @@ class ChatThread(Thread):
         super(ChatThread, self).__init__()  # 调用父类的构造函数
         self.func = func  # 传入线程函数逻辑
 
-    def run(self) :
+    def run(self):
         self.func()
 
 

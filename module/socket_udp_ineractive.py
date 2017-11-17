@@ -6,18 +6,20 @@ import socket
 from threading import Thread
 
 
-BUFF_SIZE = 1024 # 设置缓冲区大小
-server_addr = ('127.0.0.1', 2333) # IP和端口构成表示地址、端口必须数字
+BUFF_SIZE = 1024  # 设置缓冲区大小
+server_addr = ('127.0.0.1', 2333)  # IP和端口构成表示地址、端口必须数字
 
-class ChatThread(Thread) :
-    def __init__(self, func) :
+
+class ChatThread(Thread):
+    def __init__(self, func):
         super(ChatThread, self).__init__()  # 调用父类的构造函数
         self.func = func  # 传入线程函数逻辑
 
-    def run(self) :
+    def run(self):
         self.func()
 
-def re_data() :
+
+def re_data():
     server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     server.bind(server_addr)
     print('waitting for data')
@@ -28,7 +30,8 @@ def re_data() :
         server.sendto(bytes(input('Please reply some string > '), 'utf8'), client_addr)
     server.close()
 
-def se_data() :
+
+def se_data():
     client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # 生成新的套接字对象
     while True:
         data = input('Please Input data > ')
@@ -37,7 +40,8 @@ def se_data() :
         print(bytes.decode(data))
     client.close()
 
-def main() :
+
+def main():
     # t1 = Thread(target = re_data)
     # t2 = Thread(target = se_data)
     # 先创建线程对象
@@ -49,6 +53,7 @@ def main() :
     # 等待动作
     t1.join()
     t2.join()
+
 
 if __name__ == '__main__' :
     main()
