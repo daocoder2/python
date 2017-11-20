@@ -6,7 +6,7 @@ import socket
 from threading import Thread
 
 
-BUFF_SIZE = 1024 # 设置缓冲区大小
+BUFF_SIZE = 1024  # 设置缓冲区大小
 server_addr = ('127.0.0.1', 2333)  # IP和端口构成表示地址、端口必须数字
 
 
