@@ -16,6 +16,8 @@ class VmovieItem(scrapy.Item):
     # vid = scrapy.Field()
     # 影片封面
     cover = scrapy.Field()
+    # 封面本地路径
+    cover_path = scrapy.Field()
     # 影片时长
     duration = scrapy.Field()
     # 影片名称
