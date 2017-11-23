@@ -35,7 +35,7 @@ class VmovieSpider(scrapy.Spider):
             item = VmovieItem()
             item['name'] = item_selector.xpath("./a/@title")[0].extract()
             item['cover'] = item_selector.xpath("./a/img/@src")[0].extract()
-            item['duration'] = item_selector.xpath('.//span[@class="film-time"]/'
+            item['duration'] = item_selector.xpath('//span[@class="film-time"]/'
                                                'text()')[0].extract()
             # ll = ItemLoader(item=VmovieItem(), response=item_selector)
             # ll.add_xpath('cover', "./a/img/@src")
