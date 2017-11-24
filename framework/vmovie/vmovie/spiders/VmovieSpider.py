@@ -72,9 +72,9 @@ class VmovieSpider(scrapy.Spider):
         return dl.load_item()
 
     def strip_tag(self, string):
-        """ This function parses a property page.
-        @url http://www.vmovier.com/53020?from=index_new_title
-        @returns result
+        """ This function process text which include html tags.
+        @string the sting includes html tags
+        @returns string
         """
         # dr = re.compile(r'<[^>]+>', re.S)
         # result = re.sub(dr, '', string)
