@@ -73,7 +73,7 @@ class VmovieSpider(scrapy.Spider):
 
     def strip_tag(self, string):
         """ This function process text which include html tags.
-        @string the sting includes html tags
+        @string the text includes html tags
         @returns string
         """
         # dr = re.compile(r'<[^>]+>', re.S)
