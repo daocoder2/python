@@ -103,8 +103,8 @@ DOWNLOADER_MIDDLEWARES = {
 
 IMAGES_STORE = 'G:\\computer\python\\cover\\'
 ITEM_PIPELINES = {
-   # 'vmovie.pipelines.VmoviePipeline': 300,
-   'vmovie.pipelines.PicsDownloadPipeline': 300,
+    'vmovie.pipelines.PicsDownloadPipeline': 300,
+    'vmovie.pipelines.JsonWriterPipeline': 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
