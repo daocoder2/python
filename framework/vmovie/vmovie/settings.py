@@ -101,7 +101,8 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 
-IMAGES_STORE = 'G:\\computer\python\\cover\\'
+# IMAGES_STORE = 'G:\\computer\\python\\cover\\'
+IMAGES_STORE = 'D:\\python\\cover\\'
 ITEM_PIPELINES = {
     'vmovie.pipelines.PicsDownloadPipeline': 300,
     'vmovie.pipelines.JsonWriterPipeline': 400,
