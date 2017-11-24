@@ -4,6 +4,7 @@
 import scrapy
 import time
 import re
+from w3lib import html
 from urllib import parse
 from vmovie.items import VmovieItem
 from scrapy.loader import ItemLoader
@@ -60,7 +61,7 @@ class VmovieSpider(scrapy.Spider):
         # dl.add_xpath('name', '//h1[@class="post-title"]/text()',
         #              MapCompose(str.strip, lambda i: i.replace('&nbsp;', '')))
         dl.add_xpath('desc', '//div[@class="p00b204e980"]/p[position()>1]',
-                     Join(' '), self.strip_tag, str.strip)
+                     Join('<br>'), self.strip_tag, str.strip)
         dl.add_xpath('playurl', '//div[@class="p00b204e980"]//iframe/@src')
 
         # Housekeeping fields
@@ -75,8 +76,9 @@ class VmovieSpider(scrapy.Spider):
         @url http://www.vmovier.com/53020?from=index_new_title
         @returns result
         """
-        dr = re.compile(r'<[^>]+>', re.S)
-        result = re.sub(dr, '', string)
+        # dr = re.compile(r'<[^>]+>', re.S)
+        # result = re.sub(dr, '', string)
+        result = html.remove_tags(string, keep=('br', ))
         result = result.replace('本文文字内容归本站版权所有，转载请注明来自V电影（vmovier.com）', '')
         return result
 
