@@ -9,6 +9,7 @@ from vmovie.items import VmovieItem
 from scrapy.loader import ItemLoader
 from scrapy.loader.processors import MapCompose, Join
 
+
 class VmovieSpider(scrapy.Spider):
     # 标志当前爬虫的名字
     name = 'vmovie'
@@ -21,17 +22,14 @@ class VmovieSpider(scrapy.Spider):
         self.domain = 'www.vmovier.com/'
 
     def parse(self, response):
-        # Get the next index URL and yield Requests
+        # 获取下一页地址和发起请求
         next_selector = response.xpath('//a[@class="next"]/@href')
         for url in next_selector.extract():
             yield scrapy.Request(parse.urljoin(response.url, url))
 
-        # Get item URL and yield Requests
+        # 获取详情页地址和发起请求
         items_selector = response.xpath('//li[@class="clearfix"]')
         for item_selector in items_selector:
-            # self.log('----------------------' + item_selector)
-            # print(item_selector)
-            # item_data = item_selector.extract()
             item = VmovieItem()
             item['name'] = item_selector.xpath("./a/@title")[0].extract()
             item['cover'] = item_selector.xpath("./a/img/@src")[0].extract()
@@ -42,7 +40,6 @@ class VmovieSpider(scrapy.Spider):
             # ll.add_xpath('duration', '//span[@class="film-time"]/text()')
             # item = ll.load_item()
             detail_url = item_selector.xpath("./a/@href")[0].extract()
-            self.log('----------------------' + detail_url)
             yield scrapy.Request(parse.urljoin(response.url, detail_url),
                                  callback=self.parse_detail, meta=item)
 
