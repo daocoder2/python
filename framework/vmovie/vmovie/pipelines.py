@@ -5,6 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
+import json
 from scrapy.contrib.pipeline.images import ImagesPipeline
 from scrapy.exceptions import DropItem
 from scrapy.http import Request
@@ -19,10 +20,15 @@ class PicsDownloadPipeline(ImagesPipeline):
     # def file_path(self, request, response=None, info=None):
     #     image_name = '这里可以自定义图片名'
     #     return 'full/%s' % (image_name)
+    img_urls = set()
 
     def get_media_requests(self, item, info):
         for image_url in item['cover']:
-            yield Request(image_url)
+            if image_url in self.img_urls:
+                raise DropItem("Duplicate item found: %s" % item)
+            else:
+                self.img_urls.add(image_url)
+                yield Request(image_url)
 
     def item_completed(self, results, item, info):
         # [scrapy.pipelines.files] ：https://segmentfault.com/q/1010000008135270
@@ -31,4 +37,21 @@ class PicsDownloadPipeline(ImagesPipeline):
             raise DropItem("Item contains no images")
         item['cover_path'] = image_path
         return item
+
+
+class JsonWriterPipeline(object):
+    def __init__(self):
+        self.file = None
+
+    def open_spider(self, spider):
+        self.file = open('items.json', 'w', encoding='utf-8')
+
+    def close_spider(self, spider):
+        self.file.close()
+
+    def process_item(self, item, spider):
+        line = json.dumps(dict(item), ensure_ascii=False) + "\n"
+        self.file.write(line)
+        return item
+
 
