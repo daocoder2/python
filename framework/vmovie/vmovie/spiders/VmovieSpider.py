@@ -25,7 +25,8 @@ class VmovieSpider(scrapy.Spider):
         # 获取下一页地址和发起请求
         next_selector = response.xpath('//a[@class="next"]/@href')
         for url in next_selector.extract():
-            yield scrapy.Request(parse.urljoin(response.url, url))
+            # yield scrapy.Request(parse.urljoin(response.url, url))
+            yield scrapy.Request(response.urljoin(url))
 
         # 获取详情页地址和发起请求
         items_selector = response.xpath('//li[@class="clearfix"]')
