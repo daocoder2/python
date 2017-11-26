@@ -130,3 +130,4 @@ ITEM_PIPELINES = {
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 DOWNLOAD_TIMEOUT = 15
+IMAGES_EXPIRES = 90
