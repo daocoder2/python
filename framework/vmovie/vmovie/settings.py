@@ -64,14 +64,14 @@ ROBOTSTXT_OBEY = True
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 0.3
 # The download delay setting will honor only one of:
-# CONCURRENT_REQUESTS_PER_DOMAIN = 16
-# CONCURRENT_REQUESTS_PER_IP = 16
+# CONCURRENT_REQUESTS_PER_DOMAIN = 16  # 单网站并发请求最大值
+# CONCURRENT_REQUESTS_PER_IP = 16  # 单IP并发请求最大值
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
-# TELNETCONSOLE_ENABLED = False
+TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
 # DEFAULT_REQUEST_HEADERS = {
