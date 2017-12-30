@@ -3,15 +3,6 @@
 
 [socket：官方文档是最好的模块表达说明。](https://docs.python.org/3.6/library/socket.html)
 
-urllib is a package that collects several modules for working with URLs:
-
-- urllib.request for opening and reading URLs
-- urllib.error containing the exceptions raised by urllib.request
-- urllib.parse for parsing URLs
-- urllib.robotparser for parsing robots.txt files
-
-大体来说就是urllib是一个包含request、error、parse、robotparser四个模块，关乎网络资源请求的包。request模块用来发起网络资源请求；error模块用来在request网络资源过程中搜集异常报错；parse模块用来对url地址进行处理；robotparser模块用来解析robots.txt文件（未知）。
-
 ## socket
 
 ## 1、socket基础
