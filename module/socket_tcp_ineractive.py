@@ -60,8 +60,6 @@ def se_data():
 
 
 def main():
-    # t1 = Thread(target = re_data)
-    # t2 = Thread(target = se_data)
     # 先创建线程对象
     t1 = ChatThread(re_data)
     t2 = ChatThread(se_data)
