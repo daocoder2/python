@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} daocoer {% endblock %}
+{% block head %}
+    {{ super() }}
+    <style></style>
+    <link rel="icon" href="{{ url_for('static', filename = 'images/favicon.ico') }}"
+type="image/x-icon">
+{% endblock %}
+{% block body %}
+<p>hello daocoder</p>
+{% endblock %}
