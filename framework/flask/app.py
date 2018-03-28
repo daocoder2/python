@@ -3,8 +3,11 @@
 
 from flask import Flask, render_template, request, make_response, redirect, \
     abort, url_for
+from flask_moment import Moment
+from datetime import datetime
 
 app = Flask(__name__)
+moment = Moment(app)
 app.config['SECRET_KEY'] = 'SECRET_KEY'
 # mysql://username:passwd@localhost/mydatabase
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:mysql@127.0.0.1:3306/test'
@@ -47,7 +50,7 @@ def template():
 
 @app.route('/extends')
 def extends():
-    return render_template('extends.html')
+    return render_template('extends.html', current_time=datetime.utcnow())
 
 
 # 错误定义页面这个参数e是必须的
