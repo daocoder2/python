@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="jq.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<ul>
+			
+		</ul>
+		
+		
+<script type="text/javascript">
+			
+	var rt = {
+		'cplist': [
+            {
+                id: 4,
+                name: '父1'
+            },
+            {
+                id: 5,
+                name: '父5'
+            },
+            {
+                id: 6,
+                name: '父2'
+            },
+            {
+                id: 15,
+                name: '父3'
+            },
+            {
+                id: 16,
+                name: '父4'
+		    }
+		],
+		'agentlist': [
+		    {
+                id: 7,
+                pid: 5,
+                name: '吉大'
+		    },
+            {
+                id: 8,
+                pid: 5,
+                name: '雅玲地产'
+            },
+            {
+                id: 9,
+                pid: 6,
+                name: '张四'
+            },
+            {
+                id: 10,
+                pid: 4,
+                name: '张五'
+            },
+            {
+                id: 11,
+                pid: 4,
+                name: '张六'
+            }
+		]
+	};
+	
+	
+	var data = [];
+	var ul = document.querySelector('ul');
+	var childData = rt.agentlist;
+	var parentData = rt.cplist;
+	
+	$.each(parentData, function (index, item) {
+		outermost:
+		for (var i = 0; i < childData.length; i++) {
+			if (childData[i].pid == item.id) {
+				var temp ={
+					pid: item.id,
+					id: childData[i].id,
+					parent: item,
+					child: [childData[i]]					
+				}
+			} else {
+				var temp ={
+					pid: item.id,
+					id: childData[i].id,
+					parent: item,
+					child: null				
+				}
+			}
+			for (var m = 0; m < data.length; m++) {
+				if (data[m].pid == item.id) { // 说明已经放进去了
+					if (data[m].child == null) {
+						data[m] = temp;
+					} else {
+						if (childData[i].pid == item.id) {
+							data[m].child.push(childData[i])
+						}
+					}
+					continue outermost;
+				}
+			}
+			data.push(temp)
+		}
+		
+	});
+	
+	$.each(data, function(index, item) {
+		var secondHtml = '';
+		if (item.child) {
+			$.each(item.child, function(index, childItem) {
+				secondHtml += initChild(childItem)
+			});		
+		}
+		
+		var li = [
+			'<li>',
+				'<div class="first_content">' + item.parent.name + '</div>',
+				secondHtml,
+			'</li>'
+		].join('');
+		
+		$(ul).append(li)
+		
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	function initChild(childData) {
+		var childHtml = '<div id="' + childData.id + '" class="second_content">' + childData.name + '</div>';
+		return childHtml
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+				
+</script>
+	</body>
+</html>

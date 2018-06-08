@@ -1,0 +1,8 @@
+
+body{
+    background: white url("images/daocoder.jpeg") no-repeat right bottom;
+    min-height: 500px;
+}
+li a{
+    color: green;
+}
