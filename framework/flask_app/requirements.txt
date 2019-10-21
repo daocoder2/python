@@ -37,7 +37,7 @@ Flask-WTF==0.14.2
 gevent==1.2.2
 greenlet==0.4.12
 html5lib==1.0.1
-httpie==0.9.9
+httpie==1.0.3
 hyperlink==17.3.1
 idna==2.6
 incremental==17.5.0
